@@ -49,28 +49,6 @@ func (di *DeviceInfo) SetUWD() {
 	userId = strings.ToUpper(userId)
 
 	aes := NewAESEncrypter()
-	/*
-			public static final String a(String p0){
-		       i.IllegalArgumentHandling(p0, "content");
-		       i.IllegalArgumentHandling(p0, "encData");
-		       String str = "qrstuvwxyz123456";
-		       i.IllegalArgumentHandling(str, "vector");
-		       Cipher cInstance = Cipher.getInstance("AES/CBC/PKCS5Padding");
-		       byte[] bBytes = "baisimeji9262019".getBytes(a.a);
-		       String str1 = "\(this as java.lang.String\).getBytes\(charset\)";
-		       i.NullHandling(bBytes, str1);
-		       byte[] bBytes1 = str.getBytes(a.a);
-		       i.NullHandling(bBytes1, str1);
-		       cInstance.init(1, new SecretKeySpec(bBytes, "AES"), new IvParameterSpec(bBytes1));
-		       Charset cName = Charset.forName("utf-8");
-		       i.NullHandling(cName, "Charset.forName\(charsetName\)");
-		       byte[] bBytes2 = p0.getBytes(cName);
-		       i.NullHandling(bBytes2, str1);
-		       String sstr = Base64.encodeToString(cInstance.doFinal(bBytes2), 0);
-		       i.IllegalStateHandle(sstr, "Base64.encodeToString\(encrypted, 0\)");
-		       return sstr;
-		    }
-	*/
 	_, ph := aes.GetKeys()
 
 	encryptedData := aes.AESEncrypt(userId, []byte(ph))
