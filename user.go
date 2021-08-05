@@ -38,5 +38,5 @@ func (p *User) UpdateDevice(country string, product string, sys_lang string, uwd
 		panic(err)
 	}
 
-	return resp.Result()
+	return resp
 }

@@ -37,10 +37,10 @@ func (p *Common) Getimpornword(country string, product string, sys_lang string, 
 		"device":         device,
 		"brand":          brand,
 		"ts":             strconv.FormatUint(uint64(ts), 10),
-	}).SetResult(&getimpornwordResponse{}).Post(userUrl + "/getimpornword")
+	}).SetResult(&getimpornwordResponse{}).Get(commonUrl + "/getimpornword")
 	if err != nil {
 		panic(err)
 	}
 
-	return resp.Result()
+	return resp
 }

@@ -88,7 +88,7 @@ func main() {
 		sign:           "",
 		pkg:            "anonymous.sns.community.gravity",
 		referrer:       "default",
-		sub_referrer: "",
+		sub_referrer:   "",
 		zone:           0,
 		system_version: "8.0.0",
 		sdk_version:    26,

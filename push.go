@@ -38,5 +38,5 @@ func (p *Push) BindToken(country string, product string, sys_lang string, uwd st
 		panic(err)
 	}
 
-	return resp.Result()
+	return resp
 }
