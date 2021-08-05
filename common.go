@@ -5,7 +5,7 @@ import (
 )
 
 type ICommon interface {
-	Getimpornword(country string, product string, sys_lang string, uwd string, app_version string, sign string, pkg string, referrer string, zone int, system_version string, skd_version int, model string, device string, brand string, sub_referrer string, ts uint32) getimpornwordResponse
+	Getimpornword(country string, product string, sys_lang string, uwd string, app_version string, sign string, pkg string, referrer string, zone int, system_version string, skd_version int, model string, device string, brand string, ts uint32) getimpornwordResponse
 }
 
 type Common struct {
@@ -20,7 +20,7 @@ type getimpornwordResponse struct {
 	Errno  int    `json:"errno"`
 }
 
-func (p *Common) Getimpornword(country string, product string, sys_lang string, uwd string, app_version string, sign string, pkg string, referrer string, zone int, system_version string, skd_version int, model string, device string, brand string, sub_referrer string, ts uint32) interface{} {
+func (p *Common) Getimpornword(country string, product string, sys_lang string, uwd string, app_version string, sign string, pkg string, referrer string, zone int, system_version string, skd_version int, model string, device string, brand string, ts uint32) interface{} {
 	resp, err := p.client.httpClient.R().SetQueryParams(map[string]string{
 		"country":        country,
 		"product":        product,

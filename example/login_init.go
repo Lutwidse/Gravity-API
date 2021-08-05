@@ -28,12 +28,12 @@ func GetSign(ts uint32) string {
 }
 
 type DeviceInfo struct {
-	country, product, sys_lang, uwd, app_version, sign, pkg, referrer string
-	zone                                                              int
-	system_version                                                    string
-	sdk_version                                                       int
-	model, device, brand, push_token                                  string
-	ts                                                                uint32
+	country, product, sys_lang, uwd, app_version, sign, pkg, referrer, sub_referrer string
+	zone                                                                            int
+	system_version                                                                  string
+	sdk_version                                                                     int
+	model, device, brand, push_token                                                string
+	ts                                                                              uint32
 }
 
 func (di *DeviceInfo) SetSignWithTimestamp() {
@@ -88,6 +88,7 @@ func main() {
 		sign:           "",
 		pkg:            "anonymous.sns.community.gravity",
 		referrer:       "default",
+		sub_referrer: "",
 		zone:           0,
 		system_version: "8.0.0",
 		sdk_version:    26,
@@ -104,11 +105,11 @@ func main() {
 
 	// I'll look up other API functions when I'm free and refactor this dirty code.
 	di.SetSignWithTimestamp()
-	resp = client.User.UpdateDevice(di.country, di.product, di.sys_lang, di.uwd, di.app_version, di.sign, di.pkg, di.referrer, di.zone, di.system_version, di.sdk_version, di.model, di.device, di.brand, di.push_token, di.ts)
+	resp = client.User.UpdateDevice(di.country, di.product, di.sys_lang, di.uwd, di.app_version, di.sign, di.pkg, di.referrer, di.zone, di.system_version, di.sdk_version, di.model, di.device, di.brand, di.sub_referrer, di.ts)
 	fmt.Printf("updateDevice: %v\n", resp)
 
 	di.SetSignWithTimestamp()
-	resp = client.Common.Getimpornword(di.country, di.product, di.sys_lang, di.uwd, di.app_version, di.sign, di.pkg, di.referrer, di.zone, di.system_version, di.sdk_version, di.model, di.device, di.brand, di.push_token, di.ts)
+	resp = client.Common.Getimpornword(di.country, di.product, di.sys_lang, di.uwd, di.app_version, di.sign, di.pkg, di.referrer, di.zone, di.system_version, di.sdk_version, di.model, di.device, di.brand, di.ts)
 	fmt.Printf("getimpornword: %v\n", resp)
 
 	di.SetSignWithTimestamp()
