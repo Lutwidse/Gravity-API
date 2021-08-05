@@ -36,7 +36,6 @@ func (p *Common) Getimpornword(country string, product string, sys_lang string, 
 		"model":          model,
 		"device":         device,
 		"brand":          brand,
-		"sub_referrer":   sub_referrer,
 		"ts":             strconv.FormatUint(uint64(ts), 10),
 	}).SetResult(&getimpornwordResponse{}).Post(userUrl + "/getimpornword")
 	if err != nil {
