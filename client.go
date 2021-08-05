@@ -7,7 +7,7 @@ type GravityClient struct {
 
 	User   *User
 	Common *Common
-	Push *Push
+	Push   *Push
 }
 
 func NewGravityClient(httpClient *resty.Client) *GravityClient {

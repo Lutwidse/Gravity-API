@@ -15,12 +15,7 @@ type aesEncrypter struct {
 }
 
 func NewAESEncrypter() *aesEncrypter {
-	return &aesEncrypter{}
-}
-
-func (x *aesEncrypter) SetKeys(k string, iv string) {
-	x.initialVector = k
-	x.passphrase = iv
+	return &aesEncrypter{initialVector: "qrstuvwxyz123456", passphrase: "baisimeji9262019"}
 }
 
 func (x *aesEncrypter) GetKeys() (string, string) {
