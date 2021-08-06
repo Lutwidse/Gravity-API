@@ -20,24 +20,24 @@ type getimpornwordResponse struct {
 	Errno  int    `json:"errno"`
 }
 
-func (p *Common) Getimpornword(deviceInfo *DeviceInfo) interface{} {
-	deviceInfo.SetSignWithTimestamp()
+func (p *Common) Getimpornword() interface{} {
+	p.client.DeviceInfo.SetSignWithTimestamp()
 	resp, err := p.client.httpClient.R().SetQueryParams(map[string]string{
-		"country":        deviceInfo.Country,
-		"product":        deviceInfo.Product,
-		"sys_lang":       deviceInfo.Sys_lang,
-		"uwd":            deviceInfo.Uwd,
-		"app_version":    deviceInfo.App_version,
-		"sign":           deviceInfo.Sign,
-		"pkg":            deviceInfo.Pkg,
-		"referrer":       deviceInfo.Referrer,
-		"zone":           strconv.Itoa(deviceInfo.Zone),
-		"system_version": deviceInfo.System_version,
-		"skd_version":    strconv.Itoa(deviceInfo.Sdk_version),
-		"model":          deviceInfo.Model,
-		"device":         deviceInfo.Device,
-		"brand":          deviceInfo.Brand,
-		"ts":             strconv.FormatUint(uint64(deviceInfo.Ts), 10),
+		"country":        p.client.DeviceInfo.Country,
+		"product":        p.client.DeviceInfo.Product,
+		"sys_lang":       p.client.DeviceInfo.Sys_lang,
+		"uwd":            p.client.DeviceInfo.Uwd,
+		"app_version":    p.client.DeviceInfo.App_version,
+		"sign":           p.client.DeviceInfo.Sign,
+		"pkg":            p.client.DeviceInfo.Pkg,
+		"referrer":       p.client.DeviceInfo.Referrer,
+		"zone":           strconv.Itoa(p.client.DeviceInfo.Zone),
+		"system_version": p.client.DeviceInfo.System_version,
+		"skd_version":    strconv.Itoa(p.client.DeviceInfo.Sdk_version),
+		"model":          p.client.DeviceInfo.Model,
+		"device":         p.client.DeviceInfo.Device,
+		"brand":          p.client.DeviceInfo.Brand,
+		"ts":             strconv.FormatUint(uint64(p.client.DeviceInfo.Ts), 10),
 	}).SetResult(&getimpornwordResponse{}).Get(commonUrl + "/getimpornword")
 	if err != nil {
 		panic(err)

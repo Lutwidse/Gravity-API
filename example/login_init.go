@@ -11,7 +11,7 @@ func main() {
 	client := gravity_api.NewGravityClient(resty.New())
 	var resp interface{}
 
-	deviceInfo := gravity_api.DeviceInfo{
+	di := gravity_api.DeviceInfo{
 		Country:        gravity_api.Country,
 		Product:        gravity_api.Product,
 		Sys_lang:       gravity_api.Sys_lang,
@@ -31,16 +31,19 @@ func main() {
 		Push_token: gravity_api.Push_token,
 	}
 
+	client.DeviceInfo = &di
+	client.DeviceInfo.SetUWD()
+
 	// legitimate communication
-	resp = client.User.UpdateDevice(&deviceInfo)
+	resp = client.User.UpdateDevice()
 	fmt.Printf("updatedeviceInfo: %v\n", resp)
 
-	resp = client.Common.Getimpornword(&deviceInfo)
+	resp = client.Common.Getimpornword()
 	fmt.Printf("getimpornword: %v\n", resp)
 
-	resp = client.Push.BindToken(&deviceInfo)
+	resp = client.Push.BindToken()
 	fmt.Printf("bindToken: %v\n", resp)
 
-	resp = client.Push.BindToken(&deviceInfo)
+	resp = client.Push.BindToken()
 	fmt.Printf("bindToken: %v\n", resp)
 }
