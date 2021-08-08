@@ -1,7 +1,6 @@
 package gravity_api
 
 import (
-	"strconv"
 )
 
 type ICommon interface {
@@ -22,23 +21,9 @@ type getimpornwordResponse struct {
 
 func (p *Common) Getimpornword() interface{} {
 	p.client.DeviceInfo.SetSignWithTimestamp()
-	resp, err := p.client.httpClient.R().SetQueryParams(map[string]string{
-		"country":        p.client.DeviceInfo.Country,
-		"product":        p.client.DeviceInfo.Product,
-		"sys_lang":       p.client.DeviceInfo.Sys_lang,
-		"uwd":            p.client.DeviceInfo.Uwd,
-		"app_version":    p.client.DeviceInfo.App_version,
-		"sign":           p.client.DeviceInfo.Sign,
-		"pkg":            p.client.DeviceInfo.Pkg,
-		"referrer":       p.client.DeviceInfo.Referrer,
-		"zone":           strconv.Itoa(p.client.DeviceInfo.Zone),
-		"system_version": p.client.DeviceInfo.System_version,
-		"skd_version":    strconv.Itoa(p.client.DeviceInfo.Sdk_version),
-		"model":          p.client.DeviceInfo.Model,
-		"device":         p.client.DeviceInfo.Device,
-		"brand":          p.client.DeviceInfo.Brand,
-		"ts":             strconv.FormatUint(uint64(p.client.DeviceInfo.Ts), 10),
-	}).SetResult(&getimpornwordResponse{}).Get(commonUrl + "/getimpornword")
+	params := p.client.DeviceInfo
+	resp, err := p.client.commonClient.R().SetPathParams(params).SetResult(&getimpornwordResponse{}).
+		Get("/getimpornword?country={country}&product={product}&sys_lang={sys_lang}&uwd={uwd}&app_version={app_version}&sign={sign}&pkg={pkg}&referrer={referrer}&zone={zone}&system_version={system_version}&sdk_version={sdk_version}&model={model}&device={device}&brand={brand}&ts={ts}")
 	if err != nil {
 		panic(err)
 	}

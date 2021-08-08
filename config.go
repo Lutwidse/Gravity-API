@@ -1,5 +1,6 @@
 package gravity_api
 
+// Body and Path params
 const (
 	Country = "JP"
 	Product = "Gravity"
@@ -13,5 +14,12 @@ const (
 	Model = "Galaxy_Nexus_6"
 	Device = "android"
 	Brand = "unknown"
+	Sub_referrer = ""
 	Push_token = "-1"
+)
+
+var (
+	Uwd = ""
+	Sign = ""
+	Ts = 0
 )
